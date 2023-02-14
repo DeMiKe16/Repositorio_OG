@@ -1,0 +1,45 @@
+CMMI(Modelo integrado de Madurez de Capacidades)
+-Capacidad: lo que hacemos bien y aporta valor
+-Agrupacion buenas practicas que mejoran rendimiento procesos de negocio clave
+
+25 areas de prácticas -> practicas que persiguen un valor/intencion
+
+Categorias (4) -> areas de capacidad (10) -> Areas de prácticas (25) -> Grupos de prácticas <- Nivel de evolucion (0-5)
+
+Caminos de mejora (evaluacion):
+    1. 1 o + areas de practicas
+            + Gobernanza e Infraestuctura de implementacion -> Nivel de capacidad [0-3]
+    
+    2. VIstas predefinidas (desarrollo, servicio proveedores) -> Nivel de madurez [0-5]
+
+Evaluacionnes :
+    1 Benchmark appraisal (3 años)
+    2 Sustainment appraisal (2 años)
+    3 Action Plan Reappraisal
+
+
+Requisitos
+    Funcionales vs No Funcionales
+    Servicios y restricciones
+    Usuario vs Sistema
+    Necesidades, restricciones, atributos de calidad 
+
+    1 A
+    2 D 
+    3 B 
+    4 D (Puse C)
+    5 B 
+    6 B (Puse D)
+    7 D (No me acuerdo)
+    8 A 
+    9 D (No me acuerdo)
+    10 C 
+    11 D (Puse C)
+    12 B 
+    13 C (No me acuerdo)
+    14 B
+    15 C 
+    16 C (No me acuerdo) 
+
+
+    .
