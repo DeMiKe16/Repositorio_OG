@@ -1,1 +1,0 @@
-python -m pip install tea "ipykernel >= 6.20.1"
