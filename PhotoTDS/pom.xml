@@ -96,20 +96,14 @@
 	<dependency>
 	  <groupId>umu.tds</groupId>
 	  <artifactId>cargadorFotos</artifactId>
-	  <version>0.0.1-SNAPSHOT</version>
+	  <version>1.0</version>
 	</dependency>
 	
 	<dependency>
 	  <groupId>umu.tds</groupId>
 	  <artifactId>Luz</artifactId>
 	  <version>0.0.1-SNAPSHOT</version>
-	</dependency>
-	
-	<dependency>
-	  <groupId>PhotoTDS</groupId>
-	  <artifactId>cargadorFotos</artifactId>
-	  <version>0.0.1-SNAPSHOT</version>
-	</dependency>		
+	</dependency>	
 	
 	<dependency>
     	<groupId>org.apache.poi</groupId>
