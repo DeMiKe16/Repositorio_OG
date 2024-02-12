@@ -8,6 +8,40 @@ from umucv.util import putText
 
 import numpy as np
 
+def sacar_orientacion(inicio, final):
+    angulo_radianes = np.arctan2(inicio[1] - final[1], inicio[0] - final[0])
+    return np.degrees(angulo_radianes)
+
+def sacar_distancia(altura_mano, longitud_focal, altura_mano_imagen):
+    # Calcula la distancia real del objeto a la cámara
+    distancia = (altura_mano * longitud_focal) / altura_mano_imagen
+    return distancia
+
+def calcular_distancia(x, y):
+    return np.sqrt((y[0] - x[0])**2 + (y[1] - x[1])**2)
+
+def dedos_levantados(hand_landmarks):
+    indices_importantes = [5, 9, 13, 17]
+    # Lista para almacenar los estados de los dedos
+    estado = []
+
+    # Calcular las distancias entre la punta de cada dedo y el nudillo correspondiente
+    distancias = np.array([calcular_distancia(hand_landmarks[i], hand_landmarks[i + 3]) for i in indices_importantes])
+
+    distancia_pulgar = calcular_distancia(hand_landmarks[0], hand_landmarks[4])
+
+    # Establecer umbrales de distancia (puedes ajustar estos valores según sea necesario)
+    threshold = 70
+
+    estado_pulgar = distancia_pulgar > 120
+
+    estado = distancias > threshold
+
+    estado = np.append(estado, estado_pulgar)
+
+    return np.count_nonzero(estado)
+
+
 mp_hands = mp.solutions.hands
 
 hands = mp_hands.Hands()
@@ -77,10 +111,28 @@ for key,frame in autoStream():
         cv.circle(imagecam, points[20], 1, color=(0,0,155), thickness = 3)
 
         center = np.mean([points[5], points[17], points[0]], axis = 0)
-        cv.circle(imagecam, center.astype(int), 50, color=(255,0,0), thickness = 3)
+        cv.circle(imagecam, center.astype(int), 1, color=(255,0,0), thickness = 3)
 
+        orientacion = sacar_orientacion(points[0], points[13])
 
+        font = cv.FONT_HERSHEY_DUPLEX
+
+        texto_orientacion = f"Orientacion: {orientacion:.0f}"
+        cv.putText(imagecam, texto_orientacion, (20, 50), fontFace=font, fontScale=0.7, color=(255, 255, 255), thickness=2)
+
+        distancia = sacar_distancia(5, 60, calcular_distancia(points[5], points[0]))
+
+        texto_distancia = f"Distancia: {distancia:.0f}"
+        
+        cv.putText(imagecam, texto_distancia, (240, 50), fontFace=font, fontScale=0.7, color=(255, 255, 255), thickness=2)
+
+        dedos = dedos_levantados(points)
+
+        texto_dedos = f"Dedos: {dedos}"
+
+        cv.putText(imagecam, texto_dedos, (460, 50), fontFace=font, fontScale=0.7, color=(255, 255, 255), thickness=2)
 
 
     cv.imshow("hands", imagecam)
+
 
